@@ -1,0 +1,3 @@
+/home/cwj1994/Desktop/encryption/build/CMakeFiles/edit_cache.dir
+/home/cwj1994/Desktop/encryption/build/CMakeFiles/rebuild_cache.dir
+/home/cwj1994/Desktop/encryption/build/CMakeFiles/Main.dir
