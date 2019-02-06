@@ -1,0 +1,7 @@
+classes=5
+train  = /home/pjreddie/data/coco/trainvalno5k.txt # not used
+#valid  = coco_testdev
+valid = data/coco_val_5k.list # not used
+names = data/myawesomenames.names
+backup = backup/
+# eval=coco
