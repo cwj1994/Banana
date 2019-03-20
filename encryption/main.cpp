@@ -11,7 +11,7 @@ int merge(char *infile1,char *infile2)
 {
     FILE * rfid1 = fopen(infile1,"rb");
     FILE * rfid2 = fopen(infile2,"rb");
-    FILE * wfid = fopen("./detect.model","wb");
+    FILE * wfid = fopen("./SV7.1_448.model","wb");
 
     if((rfid1 == NULL)||(rfid2 == NULL))
     {
@@ -194,7 +194,7 @@ int main(void)
     //encryption("../m.cfg");
     //decryption("./detect.bin");
     //merge("/home/cwj1994/Desktop/AC_gesture/build/gesture_classifier_quant.param","/home/cwj1994/Desktop/AC_gesture/build/gesture_classifier_quant.bin");
-    merge("/home/cwj1994/Desktop/head-shoulder-224.param","/home/cwj1994/Desktop/head-shoulder-224.bin");
+    merge("/Users/winnie/Desktop/SV7.1_448.param","/Users/winnie/Desktop/SV7.1_448.bin");
     //FILE *file = separate("/home/cwj1994/Desktop/encryption/SV4.model");
     //char a[10];
     //fseek(file,0,SEEK_SET);

@@ -1,0 +1,1 @@
+wrapped the original code to class version.
