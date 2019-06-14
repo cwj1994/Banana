@@ -80,6 +80,7 @@ sudo vim /etc/fstab
 
 重启之后再次编译，YES，成功！！
 ###################################################################################################################################################################################################
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 when installing for raspberry pi, the cmake option can be modified to:
 cmake -D CMAKE_BUILD_TYPE=RELEASE \
@@ -98,5 +99,94 @@ in order to simpify the installation.
 
 #try to valid ncnn on tx2 and raspberry pi
 ##tx2
+##https://github.com/Tencent/ncnn/wiki/how-to-build#build-for-nvidia-jetson
+###################################################################################################################################################################################################
+#download Vulkan SDK from NVIDIA
+#please click the Vulkan SDK File link on https://developer.nvidia.com/embedded/vulkan, at the time of writing we got Vulkan_loader_demos_1.1.100.tar.gz
+
+scp the downloaded SDK to your Jetson device
+
+#install Vulkan SDK
+#unzip Vulkan_loader_demos_1.1.100.tar.gz
+cd ~/Vulkanloader_demos_1.1.100
+sudo cp loader/libvulkan.so.1.1.100 /usr/lib/aarch64-linux-gnu/
+cd /usr/lib/aarch64-linux-gnu/
+sudo rm -rf libvulkan.so.1 libvulkan.so
+sudo ln -s libvulkan.so.1.1.100 libvulkan.so
+sudo ln -s libvulkan.so.1.1.100 libvulkan.so.1
+cd ~/
+#install glslang dependency
+# glslang is a dependency of Tencent/ncnn
+git clone --depth=1 https://github.com/KhronosGroup/glslang.git
+cd glslang
+# assure that SPIR-V generated from HLSL is legal for Vulkan
+./update_glslang_sources.py
+mkdir -p build && cd build
+sudo make -j`nproc` install && cd ..
+#compile ncnn
+git clone https://github.com/Tencent/ncnn.git
+# while aarch64-linux-gnu.toolchain.cmake would compile Tencent/ncnn as well
+# but why not compile with more native features w
+cd ncnn && mkdir -p build && cd build
+cmake -DCMAKE_TOOLCHAIN_FILE=../toolchains/jetson.toolchain.cmake -DNCNN_VULKAN=ON -DCMAKE_BUILD_TYPE=Release ..
+make -j`nproc`
+sudo make install
+###################################################################################################################################################################################################
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#some thing wrong with the cmake procedure:
+#Could NOT find Vulkan (missing: Vulkan_INCLUDE_DIR) 
+#add/modify the following lines:
+if(NCNN_VULKAN)
+    set(Vulkan_INCLUDE_DIR /home/etcvision/Desktop/Vulkanloader_demos_1.1.100/include)
+    find_package(Vulkan REQUIRED)
+    include_directories(${Vulkan_INCLUDE_DIR})
+
+##raspberry pi 3b+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
