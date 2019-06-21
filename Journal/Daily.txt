@@ -143,6 +143,13 @@ if(NCNN_VULKAN)
 
 ##raspberry pi 3b+
 
+#2019.6.20
+#DEBUG UART CODE
+ERROR "Undefined symbols for architecture x86_64:"
+ERROR "ld: symbol(s) not found for architecture x86_64" again
+However the project can run using "run" directly, why???
+
+change the whole project into a CMake project. Now can be built through CMakeList. Congrad!
 
 
 
