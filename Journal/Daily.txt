@@ -151,6 +151,37 @@ However the project can run using "run" directly, why???
 
 change the whole project into a CMake project. Now can be built through CMakeList. Congrad!
 
+#2019.6.24
+Successfully enable mulpi-thread CPU on Jetson TX2
+in CMakefile in ncnn root
+"option(NCNN_OPENMP "openmp support" ON)"
+in Cmakefile in ncnn/example
+"target_link_libraries(main_PC -pthread -fopenmp ${OpenCV_LIBS} ${NCNN_EXAMPLE_LINK_LIBRARIES} Cooktop_API)"
+
+Successfully enable NCNN GPU on Jetson TX2
+can refer to the mobilenetv2ssdlite.cpp
+
+##add the .h file
+#include "gpu.h"
+
+##after creat the ncnn::Net instance:
+#if NCNN_VULKAN
+    mobilenetv2.opt.use_vulkan_compute = true;
+#endif // NCNN_VULKAN
+
+##before detect funtion
+#if NCNN_VULKAN
+    ncnn::create_gpu_instance();
+#endif // NCNN_VULKAN
+
+##after detect funtion
+#if NCNN_VULKAN
+    ncnn::destroy_gpu_instance();
+#endif // NCNN_VULKAN
+
+done
+
+
 
 
 
