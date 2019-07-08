@@ -183,6 +183,9 @@ done
 
 #2019.6.25
 
+#2019.7.2
+##Try cross compile ROS VINS for raspberry pi
+##reference:https://medium.com/@tahsincankose/cross-compiling-ros-project-for-arm-263642b405ac
 
 
 
