@@ -195,6 +195,14 @@ catkin config --extend /home/winnie/catkin_ws/arm_raspberry/opt/ros/kinetic
 catkin build -j4 --cmake-args -DCMAKE_TOOLCHAIN_FILE=/home/winnie/catkin_ws/raspberrytoolchain.cmake -DCMAKE_CROSS_COMPILE_PREFIX=/home/winnie/catkin_ws/arm_raspberry
 
 #too many errors compiling VINS, try turtlebot instead
+#modify raspberrytoolchain.cmake file:
+SET(RASPBERRY_KINETIC_PATH ${RASPBERRY_ROOT_PATH}/kinetic)
+to
+SET(RASPBERRY_KINETIC_PATH ${RASPBERRY_ROOT_PATH}/opt/ros/kinetic)
+#success
+
+
+#2019.7.11
 
 
 
