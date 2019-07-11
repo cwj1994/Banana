@@ -187,7 +187,14 @@ done
 ##Try cross compile ROS VINS for raspberry pi
 ##reference:https://medium.com/@tahsincankose/cross-compiling-ros-project-for-arm-263642b405ac
 
+#2019.7.8
+#vacation over, back to work
+#continue to try compile ROS-VINS for rsp
 
+catkin config --extend /home/winnie/catkin_ws/arm_raspberry/opt/ros/kinetic
+catkin build -j4 --cmake-args -DCMAKE_TOOLCHAIN_FILE=/home/winnie/catkin_ws/raspberrytoolchain.cmake -DCMAKE_CROSS_COMPILE_PREFIX=/home/winnie/catkin_ws/arm_raspberry
+
+#too many errors compiling VINS, try turtlebot instead
 
 
 
