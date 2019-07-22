@@ -204,10 +204,55 @@ SET(RASPBERRY_KINETIC_PATH ${RASPBERRY_ROOT_PATH}/opt/ros/kinetic)
 
 #2019.7.11
 
+#2019.7.22
+#Try cross-compile SVO for raspberry-pi
+#First try compiling on raspberry pi
+#reference: https://github.com/uzh-rpg/rpg_svo/wiki/Installation:-ROS
+#compile using ROS
+
+#Install Sophus
+==========================================================================
+/home/drew/svo/workspace/Sophus/sophus/so2.cpp:32:26: error: lvalue required as left operand of assignment
+   unit_complex_.real() = 1.;
+                          ^~
+/home/drew/svo/workspace/Sophus/sophus/so2.cpp:33:26: error: lvalue required as left operand of assignment
+   unit_complex_.imag() = 0.;
+                          ^~
+=========================================================================
+[FIXED]
+#Try replacing that line with
+
+unit_complex_ = std::complex<double>(1,0);
 
 
-
-
+#Install Fast
+==========================================================================
+c++: error: unrecognized command line option ‘-mmmx’
+c++: error: unrecognized command line option ‘-mmmx’
+c++: error: unrecognized command line option ‘-mmmx’
+c++: error: unrecognized command line option ‘-msse’; did you mean ‘-fdse’?
+c++: error: unrecognized command line option ‘-msse’; did you mean ‘-fdse’?
+c++: error: unrecognized command line option ‘-msse’; did you mean ‘-fdse’?
+c++: error: unrecognized command line option ‘-msse’; did you mean ‘-fdse’?
+c++: error: unrecognized command line option ‘-msse’; did you mean ‘-fdse’?
+c++: error: unrecognized command line option ‘-msse’; did you mean ‘-fdse’?
+c++: error: unrecognized command line option ‘-msse2’
+c++: error: unrecognized command line option ‘-msse2’
+c++: error: unrecognized command line option ‘-msse2’
+c++: error: unrecognized command line option ‘-msse3’
+c++: error: unrecognized command line option ‘-msse3’
+c++: error: unrecognized command line option ‘-msse3’
+c++: error: unrecognized command line option ‘-mssse3’
+==============================================================================
+[FIXED]
+#IF(DEFINED $ENV{ARM_ARCHITECTURE})
+#  MESSAGE("ARM_ARCHITECTURE environment variable set to " $ENV{ARM_ARCHITECTURE})
+  SET(IS_ARM TRUE)
+  #ELSE()
+  #  SET(IS_ARM FALSE)
+  #ENDIF()
+============================================================================
+#The key idea is to set the compile env to ARM
 
 
 
